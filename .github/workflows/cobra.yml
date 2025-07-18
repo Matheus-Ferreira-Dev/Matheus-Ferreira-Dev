@@ -1,25 +1,303 @@
-name: Generate Datas
-
+# ========================================
+# 1. SNAKE ANIMATION MELHORADA
+# ========================================
+name: Generate Snake Animation
 on:
-  schedule: # execute every 12 hours
-    - cron: "* */12 * * *"
+  schedule:
+    - cron: "0 */12 * * *" # A cada 12 horas (corrigido)
   workflow_dispatch:
+  push:
+    branches: [ main ]
 
 jobs:
-  build:
-    name: Jobs to update datas
+  generate:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    
     steps:
-      # Snake Animation
-      - uses: Platane/snk@master
-        id: snake-gif
+      - name: Generate snake game from GitHub contribution graph
+        uses: Platane/snk/svg-only@v3
         with:
           github_user_name: Matheus-Ferreira-dev
-          svg_out_path: dist/github-contribution-grid-snake.svg
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+            dist/github-contribution-grid-snake.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
 
-      - uses: crazy-max/ghaction-github-pages@v2.1.3
+      - name: Push snake svg to the output branch
+        uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
           build_dir: dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+---
+
+# ========================================
+# 2. ESTATÍSTICAS DINÂMICAS
+# ========================================
+name: Update Profile Stats
+on:
+  schedule:
+    - cron: "0 */6 * * *" # A cada 6 horas
+  workflow_dispatch:
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Update README with stats
+        uses: anmol098/waka-readme-stats@master
+        with:
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          SHOW_LINES_OF_CODE: true
+          SHOW_PROFILE_VIEWS: true
+          SHOW_COMMITS: true
+          SHOW_DAYS_OF_WEEK: true
+          SHOW_LANGUAGE: true
+          SHOW_OS: true
+          SHOW_PROJECTS: true
+          SHOW_TIMEZONE: true
+          SHOW_EDITORS: true
+          SHOW_LANGUAGE_PER_REPO: true
+
+---
+
+# ========================================
+# 3. CITAÇÕES DIÁRIAS MOTIVACIONAIS
+# ========================================
+name: Daily Quote Update
+on:
+  schedule:
+    - cron: "0 9 * * *" # Todo dia às 9h
+  workflow_dispatch:
+
+jobs:
+  update-quote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Update daily quote
+        run: |
+          quotes=(
+            "\"Code is like humor. When you have to explain it, it's bad.\" - Cory House"
+            "\"First, solve the problem. Then, write the code.\" - John Johnson"
+            "\"Programming isn't about what you know; it's about what you can figure out.\" - Chris Pine"
+            "\"The best error message is the one that never shows up.\" - Thomas Fuchs"
+            "\"Clean code always looks like it was written by someone who cares.\" - Robert C. Martin"
+            "\"Programs must be written for people to read, and only incidentally for machines to execute.\" - Harold Abelson"
+            "\"Any fool can write code that a computer can understand. Good programmers write code that humans can understand.\" - Martin Fowler"
+          )
+          
+          # Seleciona uma citação aleatória
+          quote=${quotes[$RANDOM % ${#quotes[@]}]}
+          
+          # Atualiza o README
+          sed -i "s/<!-- QUOTE:START -->.*<!-- QUOTE:END -->/<!-- QUOTE:START -->💡 **Quote of the day:** $quote<!-- QUOTE:END -->/g" README.md
+          
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git diff --staged --quiet || git commit -m "🔄 Daily quote update"
+          git push
+
+---
+
+# ========================================
+# 4. GERADOR DE MÉTRICAS AVANÇADAS
+# ========================================
+name: Advanced Metrics
+on:
+  schedule:
+    - cron: "0 0 * * 0" # Todo domingo à meia-noite
+  workflow_dispatch:
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          
+          # Opções gerais
+          user: Matheus-Ferreira-dev
+          template: classic
+          base: header, activity, community, repositories, metadata
+          
+          # Plugins
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: half-year
+          
+          plugin_languages: yes
+          plugin_languages_analysis_timeout: 15
+          plugin_languages_categories: markup, programming
+          plugin_languages_colors: github
+          plugin_languages_limit: 8
+          plugin_languages_recent_categories: markup, programming
+          plugin_languages_recent_days: 14
+          plugin_languages_recent_load: 300
+          plugin_languages_sections: most-used
+          plugin_languages_threshold: 0%
+          
+          plugin_habits: yes
+          plugin_habits_from: 200
+          plugin_habits_days: 14
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+          
+          plugin_achievements: yes
+          plugin_achievements_threshold: C
+          plugin_achievements_secrets: yes
+          plugin_achievements_display: detailed
+          plugin_achievements_limit: 0
+          
+          plugin_notable: yes
+          plugin_notable_from: organization
+          plugin_notable_repositories: yes
+          
+          plugin_activity: yes
+          plugin_activity_limit: 5
+          plugin_activity_load: 300
+          plugin_activity_days: 14
+          plugin_activity_filter: all
+          plugin_activity_visibility: all
+          plugin_activity_timestamps: yes
+
+---
+
+# ========================================
+# 5. PROFILE VIEWS COUNTER
+# ========================================
+name: Profile Views Counter
+on:
+  schedule:
+    - cron: "0 */8 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-views:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Update profile views
+        uses: antonkomarev/github-profile-views-counter-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          viewer_token: ${{ secrets.VIEWER_TOKEN }}
+
+---
+
+# ========================================
+# 6. SPOTIFY PLAYING NOW
+# ========================================
+name: Spotify Playing Now
+on:
+  schedule:
+    - cron: "*/5 * * * *" # A cada 5 minutos
+  workflow_dispatch:
+
+jobs:
+  update-spotify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Update Spotify status
+        uses: kittinan/spotify-github-profile@master
+        with:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_SECRET_ID: ${{ secrets.SPOTIFY_SECRET_ID }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+
+---
+
+# ========================================
+# 7. GERADOR DE README DINÂMICO
+# ========================================
+name: Dynamic README Generator
+on:
+  schedule:
+    - cron: "0 */4 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Generate dynamic content
+        run: |
+          python << 'EOF'
+          import datetime
+          import random
+          
+          # Emojis para diferentes horários
+          time_emojis = {
+              'morning': '🌅',
+              'afternoon': '☀️',
+              'evening': '🌆',
+              'night': '🌙'
+          }
+          
+          # Determina o período do dia
+          hour = datetime.datetime.now().hour
+          if 6 <= hour < 12:
+              period = 'morning'
+              greeting = 'Bom dia'
+          elif 12 <= hour < 18:
+              period = 'afternoon'
+              greeting = 'Boa tarde'
+          elif 18 <= hour < 22:
+              period = 'evening'
+              greeting = 'Boa noite'
+          else:
+              period = 'night'
+              greeting = 'Boa madrugada'
+          
+          # Frases motivacionais
+          motivational = [
+              "Transformando café em código",
+              "Debugando a vida, um commit por vez",
+              "Compilando sonhos em realidade",
+              "Refatorando o mundo com código",
+              "Pushing mudanças para um futuro melhor"
+          ]
+          
+          # Gera conteúdo dinâmico
+          emoji = time_emojis[period]
+          quote = random.choice(motivational)
+          
+          dynamic_content = f"""
+          ## {emoji} {greeting}! Bem-vindo ao meu perfil!
+          
+          ### 🚀 {quote}
+          
+          **Última atualização:** {datetime.datetime.now().strftime('%d/%m/%Y às %H:%M')}
+          """
+          
+          # Salva em arquivo
+          with open('dynamic_content.md', 'w') as f:
+              f.write(dynamic_content)
+          EOF
+          
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add dynamic_content.md
+          git diff --staged --quiet || git commit -m "🔄 Dynamic content update"
+          git push
