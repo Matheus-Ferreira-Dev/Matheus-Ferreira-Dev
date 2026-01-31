@@ -1,66 +1,38 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=00DC82&height=200&section=header&text=Matheus%20Ferreira&fontSize=70&animation=fadeIn" />
 
-  <h1>💻 Full Stack Developer | 🏋️‍♂️ Powerlifter</h1>
-  <p><i>"Transformando processos em automação na <b>Data Impetus</b> e superando limites no treino."</i></p>
-</div>
+# Matheus Ferreira
+### **Full Stack Developer | Powerlifter** 🏋️‍♂️
 
-<hr />
+Desenvolvedor focado em automação e IA, atuando na **Data Impetus**. 
+Especialista em criar soluções inteligentes com **Python**, **Node.js** e frameworks modernos.
 
-### 🛠️ Tecnologias de Peso
+---
 
-<table align="center" style="width: 100%; border-collapse: collapse;">
-  <tr bgcolor="#1a1b27">
-    <th align="center" width="33%">🚀 Frameworks</th>
-    <th align="center" width="33%">🐍 Linguagens</th>
-    <th align="center" width="33%">⚙️ Backend & DB</th>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" /><br />
-      <img src="https://img.shields.io/badge/Nuxt.js-00DC82?style=for-the-badge&logo=nuxtdotjs&logoColor=white" />
-    </td>
-    <td align="center">
-      <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" /><br />
-      <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
-    </td>
-    <td align="center">
-      <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" /><br />
-      <img src="https://img.shields.io/badge/n8n-FF6D5A?style=for-the-badge&logo=n8n&logoColor=white" />
-    </td>
-  </tr>
-  <tr bgcolor="#1a1b27">
-    <td align="center" colspan="3"><b>🎨 Estilização e Ferramentas</b></td>
-  </tr>
-  <tr>
-    <td align="center" colspan="3">
-      <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-      <img src="https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white" />
-      <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" />
-      <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" />
-    </td>
-  </tr>
-</table>
+### 🛠️ Minha Stack de Peso
 
-<hr />
+**Frameworks & Linguagens**
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white) 
+![Nuxt.js](https://img.shields.io/badge/Nuxt.js-00DC82?style=flat-square&logo=nuxtdotjs&logoColor=white) 
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white) 
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 
-### 📊 Performance & Consistência
+**Backend & Automação**
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white) 
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white) 
+![n8n](https://img.shields.io/badge/n8n-FF6D5A?style=flat-square&logo=n8n&logoColor=white)
 
-<div align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Matheus-Ferreira-Dev&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&cache_seconds=1800" />
-  
-  <img height="180em" src="https://github-readme-streak-stats.herokuapp.com/?user=Matheus-Ferreira-Dev&theme=tokyonight&hide_border=true" />
-</div>
+---
 
-<br />
+### 📊 Estatísticas Automáticas
+*Estes dados são puxados direto do meu perfil e atualizados em tempo real.*
 
-<div align="center">
-  <img height="160em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Matheus-Ferreira-Dev&layout=compact&langs_count=6&theme=tokyonight" />
-</div>
+![Estatísticas do GitHub](https://github-readme-stats.vercel.app/api?username=Matheus-Ferreira-Dev&show_icons=true&theme=tokyonight&count_private=true)
 
-<hr />
+![Linguagens mais usadas](https://github-readme-stats.vercel.app/api/top-langs/?username=Matheus-Ferreira-Dev&layout=compact&theme=tokyonight&langs_count=6)
+
+---
 
 ### 📫 Vamos nos conectar?
-<div align="center">
-  <a href="https://github.com/Matheus-Ferreira-Dev"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](LINK_DO_SEU_LINKEDIN)
+
 </div>
